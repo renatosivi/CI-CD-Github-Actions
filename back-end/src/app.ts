@@ -9,12 +9,16 @@ app.use(cors());
 
 app.get("/add", async (req: Request, res: Response) => {
   try {
-    const user = await prisma.user.create({
-      data: {
-        name: faker.name.fullName(),
-        email: faker.internet.email()
-      }
-    });
+    const user = {
+      name: faker.name.fullName(),
+      email: faker.internet.email()
+    }
+    // const user = await prisma.user.create({
+    //   data: {
+    //     name: faker.name.fullName(),
+    //     email: faker.internet.email()
+    //   }
+    // });
     res.status(httpStatus.CREATED).send(user);
   } catch (error) {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
